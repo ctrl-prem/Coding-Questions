@@ -25,9 +25,38 @@ int lengthOfLastWord(string s) {
 
 }
 
+class node {
+    public:
+    int val;
+    node* next;
+    node(int val){
+        this->val=val;
+        this->next=NULL;
+    }
+};
+
+void insertAtHead(node* &head, int val){
+    node* temp=new node(val);
+    temp->next=head;
+    head=temp;
+}
+
+void printVal(node* head){
+    while(head){
+        cout<<head->val<<" ";
+        head=head->next;
+    }
+}
 
 int main(){
-	string s;
-    // s="i am prem kumar  ";
-    getline(cin, s); //can't use cin>>s as it will not consider the space as input it will terminate just after the space entered. 
-    int cnt=  lengthOfLastWord(s); cout<<cnt<<endl; }
+    node* n1=new node(10);
+    insertAtHead(n1, 20);
+    insertAtHead(n1, 30);
+    insertAtHead(n1, 40);
+    insertAtHead(n1, 50);
+    insertAtHead(n1, 60);
+    insertAtHead(n1, 70);
+
+    printVal(n1);
+    return 0;
+}
