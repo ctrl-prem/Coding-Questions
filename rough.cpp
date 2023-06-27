@@ -56,7 +56,7 @@ int main(){
     insertAtHead(n1, 50);
     insertAtHead(n1, 60);
     insertAtHead(n1, 70);
-
+ 
     printVal(n1);
     return 0;
 }
