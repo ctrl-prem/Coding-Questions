@@ -39,6 +39,7 @@ int main(){
     s1.push(3);
     s1.push(2);
     s1.push(1);
+    cout<<s1.size()<<endl;
     while(!s1.empty()){
         cout<<s1.top()<<" ";
         s1.pop();
