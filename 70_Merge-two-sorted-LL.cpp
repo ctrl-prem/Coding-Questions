@@ -63,12 +63,6 @@ int main(){
     insertAtHead(head2, 20);
 
     node* head=NULL;
-    // node* head=new node(0);
-    // while(head){
-    //     cout<<head->val<<endl;
-    //     head=head->next;
-    // }
-    // cout<<head->val<<endl;
     head=merge(head1, head2);
     printLL(head);
     return 0;

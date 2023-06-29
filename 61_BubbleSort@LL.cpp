@@ -1,3 +1,5 @@
+// Bubble Sort over a Linked List. Used swapping.
+
 #include<iostream>
 using namespace std;
 
@@ -25,61 +27,61 @@ class node {
         }
     }
 };
-
-
-
-
-
-
 int size(node* head){
     int ans=0;
     while(head){
         ans++;
         head = head->next;
     }
+    return ans;
 }
 
 void bubble_sort(node* &head){
-    node* temp = head;
-    int n = size(head)-1;
-    while(n--){
-        bool flag = true;
-        for(int i=0; i<n; i++){
-            node* help = head;
-            if(help->val > help->next->val){
-                swap(help, help->next);
-                if(flag){
-                    node* h2 = NULL;
-                    h2 = temp->next->next;
-                    temp->next = temp;
-                    temp = 
+    int n = size(head);
+    int i=1;
+    while(i<n){
+        node* prev = NULL;
+        node* curr = head;
+        
+        int j=0;
+        while(j<n-i){
+            node* temp = curr->next;
+            if(curr->val > temp->val){
+                curr->next = temp->next;
+                temp->next = curr;
+                if(!prev){
+                    head = temp;
                 }
+                else prev->next = temp;
+                prev = temp;
             }
-            help = help->next;
+            else{
+                prev = curr;
+                curr = curr->next;
+            }
+            j++;
         }
+        i++;
     }
-
-
-
-
-
 }
 
-
-
-
-
-
-
 int main(){
-    node* head = new node(50);
-    head->insertAtHead(40, head);
-    head->insertAtHead(30, head);
+    node* head = new node(10);
     head->insertAtHead(20, head);
-    head->insertAtHead(10, head);
+    head->insertAtHead(30, head);
+    head->insertAtHead(40, head);
+    head->insertAtHead(50, head);
     head->print(head);
     cout<<endl;
     bubble_sort(head);
+    head->print(head);
+    cout<<endl;
+    int n = size(head)-1;
+    bool flag = true;
+    node* head1 = head;
+
+
+    
     head->print(head);
     cout<<endl;
     return 0;
