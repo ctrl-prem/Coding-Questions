@@ -1,2 +1,2 @@
 
-    cout<<endl;
+    cout<<n<<endl;

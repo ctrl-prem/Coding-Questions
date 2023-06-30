@@ -24,38 +24,69 @@ void printLL(node* head){
     }
 }
 
-node* merge(node* head1, node* head2){
-    node* temp1=new node(0);
-    node* temp=temp1;
-    while(head1 and head2){
-        if(head1->val<head2->val){
-            temp->next=head1;
-            temp=temp->next;
-            head1=head1->next;
-        }
-        else{
-            temp->next=head2;
-            temp=temp->next;
-            head2=head2->next;
-        }
-    }
-    while(head1){
-        temp->next=head1;
-        temp=temp->next;
-        head1=head1->next;
-    }
-    while(head2){
-        temp->next=head2;
-        temp=temp->next;
-        head2=head2->next;
-    }
-    return temp1->next;
-}
+// node* merge(node* head1, node* head2){
+//     node* temp1=new node(0);
+//     node* temp=temp1;
+//     while(head1 and head2){
+//         if(head1->val<head2->val){
+//             temp->next=head1;
+//             temp=temp->next;
+//             head1=head1->next;
+//         }
+//         else{
+//             temp->next=head2;
+//             temp=temp->next;
+//             head2=head2->next;
+//         }
+//     }
+//     while(head1){
+//         temp->next=head1;
+//         temp=temp->next;
+//         head1=head1->next;
+//     }
+//     while(head2){
+//         temp->next=head2;
+//         temp=temp->next;
+//         head2=head2->next;
+//     }
+//     return temp1->next;
+// }
+
+node* merge(node* head1, node* head2) {
+
+	// base case
+
+	if(head1 == NULL) {
+		// first LL is empty
+		return head2;
+	}
+
+	if(head2 == NULL) {
+		// second LL is empty
+		return head1;
+	}
+
+
+	// recursive case
+
+	node* head;
+		
+	if(head1->val < head2->val) {
+		head = head1;
+		head->next = merge(head1->next, head2);
+	} else {
+		head = head2;
+		head->next = merge(head1, head2->next);
+	}
+
+	return head;
+
+} 
 
 
 int main(){
     node* head1= new node(50);
-    node* head2=new node(60);
+    node* head2= new node(60);
 
     insertAtHead(head1, 30);
     insertAtHead(head1, 10);
@@ -65,5 +96,6 @@ int main(){
     node* head=NULL;
     head=merge(head1, head2);
     printLL(head);
+    cout<<endl;
     return 0;
 }
