@@ -11,16 +11,20 @@ int main(){
     cin>>n;
     bool help[n+1];
     memset(help, true, sizeof(help));
-    for(int i=2; i<=sqrt(n); i++){// i<=sqrt(n) coz if there is any factor of a no. present, that can be found till sqrt(n) only, otherwise there is no factor for that no.
+    for(int i=2; i*i<=n; i++){// i<=sqrt(n) coz if there is any factor of a no. present, that can be found till sqrt(n) only, otherwise there is no factor for that no.
+        // cout<<"hii"<<endl;
         if(help[i]){
-            for(int j=i*i; j<sizeof(help); j+=i){
+            for(int j=i*i; j<=n; j+=i){
+                // cout<<"hi"<<endl;
                 help[j]=0;
             }
         }
     }
-    for(int i=2; i<n+1; i++){
+    for(int i=2; i<=n; i++){
+        // cout<<help[i]<<"_";
         if(help[i])
             cout<<i<<" ";
     }
+    cout<<endl;
     return 0;
 }
