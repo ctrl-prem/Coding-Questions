@@ -118,22 +118,38 @@ using namespace std;
 //     cout<<(str<str1)<<endl;
 // }
 
-int main(){
-    vector<int> v1(3, 4);
-    vector<vector<int> > v2(3, vector<int>(v1));
-    for(int i=0; i<3; i++){
-        for(int j=0; j<3; j++){
-            cout<<v2[i][j]<<" ";
-        }
-        cout<<endl;
+int main() {
+    int n;
+    vector<int> A(n);
+    cin>>n;
+    for(int i=0; i<n; i++){
+        cin>>A[i];
     }
-    cout<<endl;
-    for(vector<int> x:v2){
-        for(int j:x){
-            cout<<j<<" ";
-        }
-        cout<<endl;
-    }
-
-    return 0;
+    int a = 0, b = 0, c = 0;
+    // sort(A.begin(), A.end());
+    for(int i=0; i<n; i++) cout<<A[i]<<" ";
+    // for(auto x:A) cout<<x<<" ";
+    // cout<<endl;
+    // int n1 = A.size();
+    // cout<<n1<<endl;
+    // // int n1 = A.size();
+    // // cout<<n1<<endl;
+    // // cout<<n1<<endl;
+    // for(int i=0; i<n; i++){
+    //     cout<<"hello"<<endl;
+    //     if(A[i]>=a){
+    //         cout<<"entered "<<endl;
+    //         c = b;
+    //         b = a;
+    //         a = A[i];
+    //     }
+    //     // else if(A[i]>b){
+    //     //     c = b;
+    //     //     b = A[i];
+    //     // }
+    //     // else if(A[i]>c){
+    //     //     c = A[i];
+    //     // }
+    // }
+    // cout<<(a + b + c)<<endl;
 }
