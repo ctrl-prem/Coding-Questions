@@ -25,15 +25,15 @@ void print(ListNode* head){
 }
 
 void reverseLL(ListNode* &head){
-    ListNode* curr;
-    ListNode* temp;
-    while(head!=NULL){
-        curr=head;
-        temp=head->next;
-        curr->next=NULL;
-        temp->next=head;
-        head=head->next;
+    ListNode* curr = head;
+    ListNode* prev = NULL;
+    while(curr){
+        ListNode* temp = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = temp;
     }
+    head = prev;
 }
 
 int main(){
@@ -50,4 +50,7 @@ int main(){
     cout<<endl; 
     reverseLL(head);
     print(head);
+    cout<<endl;
+    print(head);
+    cout<<endl;
 }
