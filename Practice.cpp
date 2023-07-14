@@ -1,5 +1,6 @@
 #include<iostream>
-#include<cstring>
+#include<string>
+#include<algorithm>
 #include<vector>
 using namespace std;
 // string spellmap[]={"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
@@ -119,37 +120,35 @@ using namespace std;
 // }
 
 int main() {
+    vector<int> A;
     int n;
-    vector<int> A(n);
     cin>>n;
     for(int i=0; i<n; i++){
-        cin>>A[i];
+        int x;
+        cin>>x;
+        A.push_back(x);
     }
     int a = 0, b = 0, c = 0;
     // sort(A.begin(), A.end());
-    for(int i=0; i<n; i++) cout<<A[i]<<" ";
     // for(auto x:A) cout<<x<<" ";
     // cout<<endl;
     // int n1 = A.size();
     // cout<<n1<<endl;
-    // // int n1 = A.size();
-    // // cout<<n1<<endl;
-    // // cout<<n1<<endl;
-    // for(int i=0; i<n; i++){
-    //     cout<<"hello"<<endl;
-    //     if(A[i]>=a){
-    //         cout<<"entered "<<endl;
-    //         c = b;
-    //         b = a;
-    //         a = A[i];
-    //     }
-    //     // else if(A[i]>b){
-    //     //     c = b;
-    //     //     b = A[i];
-    //     // }
-    //     // else if(A[i]>c){
-    //     //     c = A[i];
-    //     // }
-    // }
-    // cout<<(a + b + c)<<endl;
-}
+    for(int i=0; i<n; i++){
+        // cout<<"hello"<<endl;
+        if(A[i]>=a){
+            // cout<<"entered "<<endl;
+            c = b;
+            b = a;
+            a = A[i];
+        }
+        else if(A[i]>b){
+            c = b;
+            b = A[i];
+        }
+        else if(A[i]>c){
+            c = A[i];
+        }
+    }
+    cout<<(a + b + c)<<endl;
+} 
