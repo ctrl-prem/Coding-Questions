@@ -60,7 +60,7 @@ int main(){
     int n; 
     cin>>n;
     cout<<solve(n)<<endl;
-    vector<int> dp(n+1, -1);
+    vector<int> dp(n+1, -1); // n+1 because we want to align the index with the value of n 1:1 from 1 to n.
     cout<<solution(n, dp)<<endl;
     return 0;
 }
