@@ -56,11 +56,34 @@ int solution(int n, vector<int> &dp){
 // Time Complexity: O(n)
 // Space Complexity: O(n) + O(n) = O(n) (dp array + function call stack)
 
+// Bottom Up Approach (using Tabulation)
+int bottomUp(int n){
+    vector<int> dp(n+1, -1);
+    dp[1] = 0;
+    for(int i=2; i<=n; i++){
+        int x = dp[i-1];
+        int y = INT_MAX;
+        if(i%2==0){
+            y = dp[i/2];
+        }
+        int z = INT_MAX;
+        if(i%3==0){
+            z = dp[i/3];
+        }
+        dp[i] = min(x, min(y,z))+1;
+    }
+    return dp[n];
+}
+// Time Complexity: O(n)
+// Space Complexity: O(n) (dp array)
+
 int main(){
     int n; 
     cin>>n;
     cout<<solve(n)<<endl;
     vector<int> dp(n+1, -1); // n+1 because we want to align the index with the value of n 1:1 from 1 to n.
     cout<<solution(n, dp)<<endl;
+    vector<int> dp1(n+1, -1);
+    cout<<bottomUp(n)<<endl;
     return 0;
 }
