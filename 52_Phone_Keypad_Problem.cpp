@@ -1,3 +1,7 @@
+// A no. is given and we have to print all the possible strings that can be formed using the keypad of the phone. according to the mapping of no. to the alphabets on the keypad.
+// e.g. 23-> ad, ae, af, bd, be, bf, cd, ce, cf
+
+
 #include<iostream>
 #include<string>
 #include<vector>
