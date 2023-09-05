@@ -1,13 +1,29 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int main(){
-    vector<bool> help (10, false);
-    for(int i=0; i<help.size(); i++){
-        cout<<help[i]<<" ";
+int solve(int n, int x){
+    string str = to_string(n);
+    string ans;
+    int i = 0;
+    int j = str.length()-1;
+    x = x%str.length();
+    for(int i=0; i<str.length(); i++){
+        if(j-i>=x){
+            ans.push_back(str[i+x]);
+        }
+        else{
+            ans.push_back(str[x-(j-i)-1]);
+        }
     }
-    cout<<endl;
-    string num;
-    cout<<(num.size()==0)<<endl;
+    return stoi(ans);
+}
+
+int main(){
+    int n;
+    cin>>n;
+    int x;
+    cin>>x;
+    int ans = solve(n, x);
+    cout<<ans<<endl;
     return 0;
 }
