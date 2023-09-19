@@ -6,6 +6,8 @@
         "iostream": "cpp",
         "stack": "cpp",
         "forward_list": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "ratio": "cpp",
+        "random": "cpp"
     }
 }
