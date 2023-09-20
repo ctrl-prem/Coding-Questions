@@ -2,7 +2,7 @@
 using namespace std;
 
 int main(){
-    int arr[4]={1,3,4,5};
-    arr[2]=6;
-    cout<<arr[2]<<endl;
+    float i = 0.5;
+    float j = 0.5;
+    cout<<(++i)<<endl;
 }

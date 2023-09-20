@@ -8,6 +8,7 @@
         "forward_list": "cpp",
         "vector": "cpp",
         "ratio": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "string": "cpp"
     }
 }
