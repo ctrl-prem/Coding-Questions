@@ -1,8 +1,13 @@
 #include<iostream>
+#include<string>
 using namespace std;
 
 int main(){
-    float i = 0.5;
-    float j = 0.5;
-    cout<<(++i)<<endl;
+    int n;
+    cin>>n;
+    string s(n, '.');
+    for(int i=0; i<n; i++){
+        cout<<s[i]<<" ";
+    }
+    cout<<endl;
 }
