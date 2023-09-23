@@ -12,7 +12,7 @@
 #include<cmath>
 using namespace std;
 
-bool validChar(vector<vector<int> >& v, int n, int i, int j, int d){
+bool validChar(vector<vector<char> >& v, int n, int i, int j, char d){
     // cout<<i<<" "<<j<<" "<<d<<" "<<n;
     for(int k=0; k<n; k++){
         if(v[i][k]==d or v[k][j]==d){
@@ -36,7 +36,7 @@ bool validChar(vector<vector<int> >& v, int n, int i, int j, int d){
     return true;
 }
 
-void solve(vector<vector<int> >& v, int n, int i, int j){
+void solve(vector<vector<char> >& v, int n, int i, int j){
     if(i==n){
         // cout<<"yes_";
         for(int x=0; x<n; x++){
@@ -54,20 +54,18 @@ void solve(vector<vector<int> >& v, int n, int i, int j){
         solve(v, n, i+1, 0);
         return;
     }
-    if(v[i][j]!=0){
+    if(v[i][j]!='.'){
         solve(v, n, i, j+1);
         return;
     }
     // cout<<"Yes_";
     for(int k=1; k<=9; k++){
-        // char d = char(k);
-        // cout<<d+'1'<<"_";
-        // cout<<"yes_";
-        if(validChar(v, n, i, j, k)){
+        char d = k+'0';
+        if(validChar(v, n, i, j, d)){
             // cout<<"yes_";
-            v[i][j]=k;
+            v[i][j]=d;
             solve(v, n, i, j+1);
-            v[i][j]=0;
+            v[i][j]='.';
         }
     }
 }
@@ -75,8 +73,8 @@ void solve(vector<vector<int> >& v, int n, int i, int j){
 int main(){
     int n;
     cin>>n;
-    // vector<vector<char> > v(n, vector<char> (n));
-    vector<vector<int> > v(n, vector<int> (n));
+    vector<vector<char> > v(n, vector<char> (n));
+    // vector<vector<int> > v(n, vector<int> (n));
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
             cin>>v[i][j];
