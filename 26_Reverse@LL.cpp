@@ -29,6 +29,7 @@ void printLL(Node* head){
     cout<<endl;
 }
 
+// Iterative approach
 Node* reverseLL(Node* head){
     Node* curr = head;
     Node* prev = NULL;
@@ -41,6 +42,7 @@ Node* reverseLL(Node* head){
     return prev;
 }
 
+// Recursive approach
 void RecReverse(Node* &head, Node* temp, Node* prev){
     // base case
     if(!temp){

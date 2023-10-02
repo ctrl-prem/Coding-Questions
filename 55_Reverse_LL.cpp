@@ -24,6 +24,7 @@ void print(ListNode* head){
     }
 }
 
+// Iterative approach
 void reverseLL(ListNode* &head){
     ListNode* curr = head;
     ListNode* prev = NULL;
@@ -34,6 +35,26 @@ void reverseLL(ListNode* &head){
         curr = temp;
     }
     head = prev;
+}
+
+// Recursive approach
+ListNode* recReverse(ListNode* head){
+    if(!head or !head->next){
+        return head;
+    }
+//          OR
+    // if(!head){
+    //     return NULL;
+    // }
+    // if(!head->next){
+    //     return head;
+    // }
+    
+    ListNode* getNode = recReverse(head->next);
+    ListNode* temp = head->next;
+    temp->next = head;
+    head->next = NULL;
+    return getNode;
 }
 
 int main(){
@@ -50,6 +71,8 @@ int main(){
     cout<<endl; 
     reverseLL(head);
     print(head);
+
+    head = recReverse(head);
     cout<<endl;
     print(head);
     cout<<endl;
