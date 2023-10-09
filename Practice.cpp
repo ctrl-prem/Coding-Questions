@@ -1,154 +1,110 @@
-#include<iostream>
-#include<string>
-#include<algorithm>
-#include<vector>
-using namespace std;
-// string spellmap[]={"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+int maxProfitBottomUp(vector<int>& weights, vector<int>& profits, int N, int W) {
 
-// void spell(int n){
-//     // base case
-//     if(n==0){
-//         return;
-//     }
-//     //friend's task
-//     spell(n/10);
-//     //my task
-//     cout<<spellmap[n%10]<<" ";
-//     return;
-// }
+	vector<vector<int>> dp(N + 1, vector<int>(W + 1));
 
-// int main(){
-//     int n;
-//     cin>>n;
-//     spell(n);
-//     cout<<endl;
-//     return 0;
-// }
+	for (int i = 0; i <= N; i++) {
+		dp[i][0] = 0;
+	}
 
+	for (int w = 0; w <= W; w++) {
+		dp[N][w] = 0;
+	}
 
-// *2->String To Integer
+	for (int i = N - 1; i >= 0; i--) {
 
-// int s_to_i(string str){
-//     //base case
-//     if(str==""){
-//         return 0;
-//     }
-//     //friend's task
-//     //my task
-//     return (s_to_i(str.substr(0, str.length()-1))*10)+(str[str.length()-1]-'0');
-// }
+		for (int w = 1; w <= W; w++) {
 
-// int main(){
-//     string str="8374";
-//     int l=0;
-//     cout<<s_to_i(str);
-//     cout<<endl;
-//     return 0;
-// }
+			// dp[i][w] = f(i, w)
 
-// *3-> Move x to the end.
+			if (weights[i] > w) {
 
-// string Move(string str, string &ans){
-//     // base case
-//     if(str=="")return ans;
-//     // friend's case
-//     // Move(str.substr(0, str.length()-1), ans);
-//     // my case
-//     if(str[str.length()-1]=='x'){
-//         ans+='x';
-//     }
-//     else{
-//         ans=str[str.length()-1]+ans;
-//     }
-//     // cout<<ans<<endl;
-//     return Move(str.substr(0, str.length()-1), ans);
-// }
+				// exclude the ith object from the knapsack
+				dp[i][w] = dp[i + 1][w];
 
-// int main(){
-//     // string str;
-//     // cin>>str;
-//     // string ans="";
-//     // cout<<Move(str, ans)<<endl;
-//     // cout<<endl;
-//     string str="prem";
-//     cout<<str.substr(0, 1);
-//     return 0;
-// }
+			} else {
 
-// Question:- matrix with 0 and X .
-// int main(){
-// 	int t;
-//     cin>>t;
-//     while(t--){
-//         int n, m;
-//         cin>>n>>m;
-//         int cnt=0;
-//         int x1, y1, x2, y2;
-//         cin>>x1>>y1>>x2>>y2;
-//         if(x1==1 or x1==n){
-//         }
-//     }
-//     return 0;
-// }
+				// 1. include the ith object into the knapsack
+				int X = dp[i + 1][w - weights[i]];
 
+				// 2. exclude the ith object from the knapsack
+				int Y = dp[i + 1][w];
 
-// Q:- How 1-D array comparison works?
-// // Sol:- say char array ch="abc" and ch1="abxyz", comparison will start, Like it takes 1st character of arrays here 'a' and 'a' and convert it into int and than "substract" if on substration(if strcmp(ch, ch1)=> 1st char of ch i.e., 'a'-'a'(1st char of ch1)) is 0 than will proceed further upto, where it get difference (!=0) and print, else it will print 0.
-// int main(){
-//     char ch[5]="pve2";
-//     char ch1[5]="pxe";
-//     // for(int i=0; i<5; i++){
-//     //     cin>>ch[i];
-//     // }
-//     strcpy(ch, ch1);
-//     strcat(ch, ch1);
-//     cout<<strcmp(ch, ch1)<<endl;
-//     cout<<ch<<endl;
-//     return 0;
-// }
+				dp[i][w] = max(profits[i] + X, Y);
 
-// #Note:- Logical Operators, only work for string not for character array.
+			}
 
+		}
 
-// Ques:- String Tokenization
+	}
 
-// int main(){
-//     string str="pre";
-//     string str1="pm4";
-//     cout<<str.compare(str1)<<endl;
-//     cout<<(str<str1)<<endl;
-// }
+	return dp[0][W]; // at the (0, W)th index of dp[][], we store f(0, W)
+
+}
+
 
 int main() {
-    vector<int> A;
-    int n;
-    cin>>n;
-    for(int i=0; i<n; i++){
-        int x;
-        cin>>x;
-        A.push_back(x);
-    }
-    int a = 0, b = 0, c = 0;
-    // sort(A.begin(), A.end());
-    // for(auto x:A) cout<<x<<" ";
-    // cout<<endl;
-    // int n1 = A.size();
-    // cout<<n1<<endl;
-    for(int i=0; i<n; i++){
-        // cout<<"hello"<<endl;
-        if(A[i]>=a){
-            // cout<<"entered "<<endl;
-            c = b;
-            b = a;
-            a = A[i];
-        }
-        else if(A[i]>b){
-            c = b;
-            b = A[i];
-        }
-        else if(A[i]>c){
-            c = A[i];
-        }
-    }
-    cout<<(a + b + c)<<endl;
-} 
+
+	int N = 5;
+	int K = 3;
+
+	vector<int> bonus = {10, 10, 5, 9};
+	vector<int> profits = {200, 400, 350, 100};
+
+	vector<vector<int>> dp(N + 1, vector<int>(K + 1, -1));
+
+	cout << maxProfitBottomUp(bonus, profits, N, K) << endl;
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include<iostream>
+#include<vector>
+
+using namespace std;
+
+int maxProfit(vector<int> weights, vector<int> profits,
+              int N, int i, int w) {
+
+	// base case
+
+	if (i == N) {
+		return 0;
+	}
+
+	if (w == 0) {
+		return 0;
+	}
+
+	// recursive case
+
+	// take a sequence of decisions for the objects starting at the ith index such that current capacity of the knapsack is 'w'
+
+	// make a decision for the ith object
+
+	// if (w>0) {
+	// 	// exclude the ith object from the knapsack
+		// return maxProfit(weights, profits, N, i + 1, w);
+	// }
+    return maxProfit(weights, profits, N, i + 1, w);
+
+	// 1. include the ith object into the knapsack
+	int X = maxProfit(weights, profits, N, i + 1, w - 1);
+
+	// 2. exclude the ith object from the knapsack
+	int Y = maxProfit(weights, profits, N, i + 1, w);
+
+	return max(profits[i] + X, Y);
+
+}

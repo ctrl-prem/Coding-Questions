@@ -32,7 +32,7 @@ void printAllnodes(ListNode* head){
     }
     cout<<endl;
     return;
-}
+} 
 
 ListNode* getTailadd(ListNode* head){
     while(head->next!=NULL){
