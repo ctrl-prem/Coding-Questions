@@ -74,7 +74,7 @@ void breakThecycle(ListNode* head){
             break;
         }
     }
-    if(!fast or !fast->next){
+    if(!fast or !fast->next){ // if there is no cycle at all or LL is empty.
         return;
     }
 
