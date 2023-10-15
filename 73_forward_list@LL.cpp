@@ -1,64 +1,154 @@
+// building own forward_list class.
+// functions include:
+    // push_front()
+    // pop_front()
+    // front()
+
 #include<iostream>
 using namespace std;
 
-template<typename T>
-class Node {
-public:
-    T data;
-    Node<T>* next; //basically It's a pointer and to identify the type of pointer we define as, Node<T>* next;
-    Node(T data){
-        this->data = data;
-        this->next = NULL;
+// Normal class
+/* class ListNode{
+    public:
+        int val;
+        ListNode* next;
+
+        ListNode(int val){
+            this->val = val;
+            this->next = NULL;
+        }
+};
+
+class forward_list{
+    ListNode* head;
+    int val;
+
+    public:
+
+        forward_list(){
+            head = NULL;
+        }
+
+        forward_list(int val){
+            head = new ListNode(val);
+        }
+
+        void push_front(int val){
+            ListNode* temp = new ListNode(val);
+            temp->next = head;
+            head = temp;
+        }
+
+        void pop_front(){
+            if(!head){
+                return;
+            }
+
+            ListNode* temp = head;
+            head = head->next;
+            delete temp;
+        }
+
+        int front(){
+            return head->val;
+        }
+
+        bool empty(){
+            if(!head){
+                return true;
+            }
+            return false;
+        }
+};
+
+void printForward(forward_list fw){
+    while(!fw.empty()){
+        cout<<fw.front()<<" ";
+        fw.pop_front();
     }
+    cout<<endl;
+} */
+
+// Generic Class
+template <typename T>
+class ListNode{
+    public:
+        T val;
+        ListNode<T>* next;
+
+        ListNode(T val){
+            this->val = val;
+            this->next = NULL;
+        }
 };
 
 template <typename T>
 class forward_list{
-public:
-    Node<T>* head;
-    forward_list(){
-        this->head = NULL;
-    }
-    void push_front(T data){
-        Node<T>* temp = new Node<T>(data);
-        temp->next = head;
-        head = temp;
-    }
-    void pop_front(){
-        if(head) head = head->next;
-    }
-    T front(){
-        return head->data;
-    }
-    void traverse(){
-        Node<T>* temp = head;
-        while(temp){
-            cout<<temp->data<<" ";
-            temp = temp->next;
+    ListNode<T>* head;
+    T val;
+
+    public:
+
+        forward_list(){
+            head = NULL;
         }
-    }
-    bool empty(){
-        return head ? 0:1;
-    }
-    void clear(){
-        head = NULL;
-    }
+
+        forward_list(T val){
+            head = new ListNode<T>(val);
+        }
+
+        void push_front(T val){
+            ListNode<T>* temp = new ListNode<T>(val);
+            temp->next = head;
+            head = temp;
+        }
+
+        void pop_front(){
+            if(!head){
+                return;
+            }
+
+            ListNode<T>* temp = head;
+            head = head->next;
+            delete temp;
+        }
+
+        T front(){
+            return head->val;
+        }
+
+        bool empty(){
+            if(!head){
+                return true;
+            }
+            return false;
+        }
 };
 
+void printForward(forward_list<int> fw){
+    while(!fw.empty()){
+        cout<<fw.front()<<" ";
+        fw.pop_front();
+    }
+    cout<<endl;
+}
+
 int main(){
-    forward_list<string> fl;
-    fl.push_front("prem");
-    fl.push_front("himanshu");
-    fl.push_front("ram");
-    fl.push_front("hocho-hocho");
-    fl.push_front("family");
-    fl.traverse();
-    cout<<endl;
-    cout<<fl.front()<<endl;
-    fl.pop_front();
-    fl.traverse();
-    cout<<endl;
-    fl.clear();
-    cout<<fl.empty()<<endl;
-    return 0;
+// for normal class
+    /* forward_list fw;
+    fw.push_front(10);
+    fw.push_front(9);
+    fw.push_front(8);
+    fw.push_front(7);
+
+    printForward(fw); */
+
+    forward_list<int> fw;
+    fw.push_front(10);
+    fw.push_front(9);
+    fw.push_front(8);
+    fw.push_front(7);
+
+    printForward(fw);
+
 }

@@ -1,51 +1,136 @@
+// Stack implementation using array.(A fixed size stack)
+// Functions included:
+    // push()
+    // pop()
+    // size()
+    // top()
+    // empty()
+
 #include<iostream>
 using namespace std;
 
-class stack {
-    public:
-    int* arr; //int arr[1000]; // we used "int* arr" coz we can have the value of n at runtime.
+// Normal Class of Stack;
+/*class stack{
+    int* arr;
     int t;
     int n;
-    stack(int n){
-        arr = new int[n]; //creating an array of fixed size on heap.
-        // if we have used "int arr[1000];" then there is no need for "arr = new int[n];"
-        t = -1;
-        this->n = n;
-    }
-    void push(int val){
-        if(t != n-1){
-            arr[++t] = val;
+
+    public:
+        stack(int n){
+            arr = new int[n];
+            t = -1;
+            this->n = n; // "this" is a pointer to object we called, and to reach to that object we can simply dereference "this" in any methods of class we require.
         }
-    }
-    void pop(){
-        if(t != -1) t--;
-    }
-    int top(){
-        return arr[t];
-    }
-    int size(){
-        return t+1; //currently the no. of values, stack is having.
-    }
-    bool empty(){
-        if(t == -1) return true;
-        return false;
-    }
+
+        void push(int val){
+            if(t == n-1){
+                return;
+            }
+            t = t+1;
+            arr[t] = val;
+        }
+
+        void pop(){
+            t = t-1;
+        }
+
+        int size(){
+            return t+1;
+        }
+
+        int top(){
+            return arr[t];
+        }
+
+        bool empty(){
+            if(t == -1){
+                return true;
+            }
+            return false;
+        }
+}; */
+
+// Generic Class for a Stack;
+template <typename T>
+class stack{
+    T* arr;
+    int t;
+    int n;
+
+    public:
+        stack(int n){
+            arr = new T[n];
+            t = -1;
+            this->n = n; // "this" is a pointer to object we called, and to reach to that object we can simply dereference "this" in any methods of class we require.
+        }
+
+        void push(T val){
+            if(t == n-1){
+                return;
+            }
+            t = t+1;
+            arr[t] = val;
+        }
+
+        void pop(){
+            t = t-1;
+        }
+
+        int size(){
+            return t+1;
+        }
+
+        T top(){
+            return arr[t];
+        }
+
+        bool empty(){
+            if(t == -1){
+                return true;
+            }
+            return false;
+        }
 };
 
-int main(){
-    stack s1(5);
-    s1.push(5);
-    s1.push(4);
-    s1.push(3);
-    s1.push(2);
-    s1.push(1);
-    cout<<s1.size()<<endl;
-    while(!s1.empty()){
-        cout<<s1.top()<<" ";
-        s1.pop();
+// For Normal class of Stack
+/* void printStack(stack st){
+    while(!st.empty()){
+        cout<<st.top()<<" ";
+        st.pop();
     }
     cout<<endl;
-    cout<<s1.empty()<<endl;
+} */
 
-    return 0;
+// for generic class of Stack
+void printStack(stack<int> st){
+    while(!st.empty()){
+        cout<<st.top()<<" ";
+        st.pop();
+    }
+    cout<<endl;
+} 
+
+int main(){
+// for normal class of stack
+    /* stack st(5);
+    st.push(10);
+    st.push(20);
+    st.push(30);
+    st.push(40);
+
+    printStack(st);
+
+    cout<<st.size()<<endl; */
+
+// for generic class of stack
+    stack<int> st(5);
+    st.push(10);
+    st.push(20);
+    st.push(30);
+    st.push(40);
+
+    printStack(st);
+
+    cout<<st.size()<<endl;
+
 }

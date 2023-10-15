@@ -1,45 +1,106 @@
-// Implementing stack with dynamic size, using vector-DataStructure.
+// Stack implementation using vector.(A dynamic size of stack)
+// Functions included:
+    // push()
+    // pop()
+    // size()
+    // top()
+    // empty()
 
 #include<iostream>
-#include<vector>
-#include<string>
 using namespace std;
 
-template<class T>
-class stack {
+// Normal class of stack;
+/* class stack{
+    vector<int> v;
+
     public:
-    vector<T> v;
-    void push(T data){
-        v.push_back(data);
-    }
-    void pop(){
-        if(!v.empty())
+
+        void push(int val){
+            v.push_back(val);
+        }
+
+        void pop(){
             v.pop_back();
+        }
+
+        int size(){
+            return v.size();
+        }
+
+        int top(){
+            return v.back();
+        }
+
+        bool empty(){
+            return v.empty();
+        }
+}; */
+
+/* void printStack(stack st){
+    while(!st.empty()){
+        cout<<st.top()<<" ";
+        st.pop();
     }
-    int size(){
-        return v.size();
-    }
-    T top(){
-        return v.back(); //v[v.size()-1];
-    }
-    bool empty(){
-        return v.empty();
-    }
+    cout<<endl;
+} */
+
+// Generic class of stack;
+template <typename T>
+class stack{
+    vector<T> v;
+
+    public:
+
+        void push(T val){
+            v.push_back(val);
+        }
+
+        void pop(){
+            v.pop_back();
+        }
+
+        int size(){
+            return v.size();
+        }
+
+        T top(){
+            return v.back();
+        }
+
+        bool empty(){
+            return v.empty();
+        }
 };
 
-int main(){
-    stack<string> s1;
-    s1.push("re");
-    s1.push("r p");
-    s1.push("ma");
-    s1.push("ku");
-    s1.push("em ");
-    s1.push("pr");
-    cout<<s1.size()<<endl;
-    while(!s1.empty()){
-        cout<<s1.top();
-        s1.pop();
+void printStack(stack<int> st){
+    while(!st.empty()){
+        cout<<st.top()<<" ";
+        st.pop();
     }
-    cout<<endl<<s1.empty()<<endl;
-    return 0;
+    cout<<endl;
+} 
+
+int main(){
+// for normal class of stack;
+    /* stack st;
+    st.push(10);
+    st.push(20);
+    st.push(30);
+    st.push(40);
+
+    printStack(st);
+
+    cout<<st.size()<<endl; */
+
+// for Generic class of stack;
+    stack<int> st;
+    st.push(10);
+    st.push(20);
+    st.push(30);
+    st.push(40);
+
+    printStack(st);
+
+    cout<<st.size()<<endl;
+
 }
