@@ -85,16 +85,11 @@ class ListNode{
 template <typename T>
 class forward_list{
     ListNode<T>* head;
-    T val;
 
     public:
 
         forward_list(){
             head = NULL;
-        }
-
-        forward_list(T val){
-            head = new ListNode<T>(val);
         }
 
         void push_front(T val){

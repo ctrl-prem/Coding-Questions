@@ -24,16 +24,11 @@ class ListNode{
 template <typename T>
 class forward_list{
     ListNode<T>* head;
-    T val;
 
     public:
 
         forward_list(){
             head = NULL;
-        }
-
-        forward_list(T val){
-            head = new ListNode<T>(val);
         }
 
         void push_front(T val){
@@ -68,39 +63,39 @@ template <typename T>
 class stack{
     public:
 
-        forward_list<T>* fw;
+        forward_list<T> fw;
         int cnt;
 
         stack(){
-            fw = new forward_list<T>();
             cnt = 0;
         }
 
-        stack(T val){
-            fw = new forward_list<T>(val);
-            cnt = 1;
-        }
         void push(T val){
-            fw->push_front(val);
+            fw.push_front(val);
             cnt++;
         }
         void pop(){
-            fw->pop_front();
+            fw.pop_front();
             cnt--;
         }
         int size(){
             return cnt;
         }
         T top(){
-            return fw->front();
+            return fw.front();
         }
         bool empty(){
-            if(fw){
-                return false;
-            }
-            return true;
+            return fw.empty();
         }
 };
+
+void printStack(stack<int> st){
+    while(!st.empty()){
+        cout<<st.top()<<" ";
+        st.pop();
+    }
+    cout<<endl;
+}
 
 int main(){
     stack<int> st;
@@ -109,7 +104,7 @@ int main(){
     st.push(30);
     st.push(40);
 
-    // printStack(st);
+    printStack(st);
 
     cout<<st.size()<<endl;
     
